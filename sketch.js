@@ -41,12 +41,6 @@ function draw() {
   text(bird.score, width / 2, max(h * 0.1, 60));
 }
 
-function keyPressed() {
-  if (key == ' ') {
-    bird.flap();
-  }
-}
-
 function windowResized() {
   w = windowWidth;
   h = windowHeight;
