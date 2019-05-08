@@ -15,9 +15,6 @@ function setup() {
 function draw() {
   background(30);
 
-  bird.show();
-  bird.update();
-
   if (frameCount % floor(w / frequency) === 0) {
     pipes.push(new Pipe());
   }
@@ -27,13 +24,17 @@ function draw() {
     pipes[i].update();
 
     if (pipes[i].collisionDetection(bird)) {
-      console.log("HIT");
+      // console.log("HIT");
     };
 
     if (pipes[i].x + pipes[i].width < 0) {
       pipes.splice(i, 1);
     }
   }
+
+  bird.think(pipes);
+  bird.show();
+  bird.update();
 
   fill(255);
   textSize(50);

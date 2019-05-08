@@ -4,8 +4,8 @@ class Pipe {
     this.gap = 70;
     this.width = 50;
     this.height = h / 2;
-    this.h1 = 0;
-    this.h2 = 0;
+    this.top = 0;
+    this.bottom = 0;
     this.x = width;
     this.y = 0;
     this.vel = 8;
@@ -33,13 +33,13 @@ class Pipe {
     let x1 = this.x;
     let x2 = this.x;
     let y1 = this.y;
-    let y2 = h - this.height + this.gap - this.offset;
+    this.bottom = h - this.height + this.gap - this.offset;
     let w = this.width;
-    let h1 = this.height - this.gap - this.offset;
+    this.top = this.height - this.gap - this.offset;
     let h2 = this.height + this.gap + this.offset;
 
-    rect(x1, y1, w, h1);
-    rect(x2, y2, w, h2);
+    rect(x1, y1, w, this.top);
+    rect(x2, this.bottom, w, h2);
   }
 
   update() {
@@ -47,8 +47,8 @@ class Pipe {
   }
 
   collisionDetection(bird) {
-    let isAboveBottom = bird.y - (bird.size / 2) < this.height - this.gap - this.offset;
-    let isBelowTop = bird.y + (bird.size / 2) > h - this.height + this.gap - this.offset;
+    let isAboveBottom = bird.y - (bird.size / 2) < this.top;
+    let isBelowTop = bird.y + (bird.size / 2) > this.bottom;
     let isAfterLeft = bird.x + (bird.size / 2) > this.x;
     let isBeforeRight = bird.x - (bird.size / 2) < this.x + this.width;
 
