@@ -1,15 +1,14 @@
 class Pipe {
 
   constructor() {
-    this.gap = 70;
     this.width = 50;
     this.height = h / 2;
     this.top = 0;
     this.bottom = 0;
     this.x = width;
     this.y = 0;
-    this.vel = 8;
-    this.gap = 100;
+    this.vel = 4;
+    this.gap = 150;
 
     let padding = 20;
     this.min = -this.height + this.gap + padding;
@@ -46,7 +45,7 @@ class Pipe {
     this.x -= this.vel;
   }
 
-  collisionDetection(bird) {
+  hits(bird) {
     let isAboveBottom = bird.y - (bird.size / 2) < this.top;
     let isBelowTop = bird.y + (bird.size / 2) > this.bottom;
     let isAfterLeft = bird.x + (bird.size / 2) > this.x;
@@ -58,7 +57,8 @@ class Pipe {
       this.isColliding = true;
       bird.score -= 1;
       return true;
-    } else if (hasScored) {
+    }
+    if (hasScored) {
       this.isPassed = true;
       bird.score += 1;
     }

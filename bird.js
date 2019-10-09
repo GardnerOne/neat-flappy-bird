@@ -7,6 +7,8 @@ class Bird {
     this.velocity = 0;
     this.terminalVelocity = 20.0;
     this.score = 0;
+    this.previousScore = 0;
+    this.isDead = false;
 
     // # Features
     // - bird y
@@ -19,7 +21,8 @@ class Bird {
   }
 
   show() {
-    fill(255);
+    stroke(255);
+    fill(255, 50);
     ellipse(this.x, this.y, this.size);
   }
 
@@ -43,7 +46,7 @@ class Bird {
     inputs[3] = closest.x / width;
 
     let output = this.brain.predict(inputs);
-    if (output > 0.5) {
+    if (output[0] > 0.5) {
       this.flap();
     }
   }
